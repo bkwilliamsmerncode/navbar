@@ -3,9 +3,11 @@ import "./Modal.css"
 
 const Modal = () => {
   return (
-    <div>
-      
-    </div>
+   <>
+   <div className="myModal">
+    <div className="modalContent"></div>
+   </div>
+   </>
   )
 }
 
