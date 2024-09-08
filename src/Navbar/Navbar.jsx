@@ -19,7 +19,7 @@ const Navbar = () => {
             <div className="pages"><p>Info</p></div>
             <div className="pages"><p>Profile</p></div>
             <div className="pages"><p>Logout</p></div>
-            <div className="pages"><IoMdMenu /></div>
+            <div className="menu"><IoMdMenu /></div>
         </div>
       </nav>
     </>
