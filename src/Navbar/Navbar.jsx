@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
+import { LuMenu } from "react-icons/lu";
+import { IoClose } from "react-icons/io5";
+import { SiTheboringcompany } from "react-icons/si";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +40,7 @@ const Navbar = () => {
     <>
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="logo">
-          <h1>MyCompany</h1>
+          <h1><SiTheboringcompany /></h1>
         </div>
         <ul className="nav-links">
           {[
@@ -59,16 +62,14 @@ const Navbar = () => {
         </ul>
         <button className="cta-button">Sign Up</button>
         <div className="hamburger" onClick={toggleMenu}>
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
+        <LuMenu />
         </div>
       </nav>
 
       {isOpen && (
         <div className="nav-modal">
           <div className="modal-content">
-            <button className="close-modal" onClick={toggleMenu}>✖</button>
+            <button className="close-modal" onClick={toggleMenu}><IoClose /></button>
             <ul className="modal-links">
               {[
                 { page: 'Home', route: '/' },

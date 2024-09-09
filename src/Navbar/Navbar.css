@@ -18,7 +18,7 @@
 }
 
 .logo h1 {
-  font-size: 1.5rem;
+  font-size: 80px;
 }
 
 .nav-links {
@@ -47,6 +47,7 @@
   padding: 0.5rem 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  border-radius: 5px;
 }
 
 .cta-button:hover {
@@ -58,6 +59,7 @@
   display: none;
   flex-direction: column;
   cursor: pointer;
+  font-size: 30px;
 }
 
 .bar {
@@ -99,6 +101,7 @@
 .modal-links {
   list-style: none;
   text-align: center;
+  font-size: 30px;
 }
 
 .modal-item {
