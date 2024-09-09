@@ -5,7 +5,9 @@ import Navbar from "./Navbar/Navbar"
 function App() {
   return (
   <>
-  <Navbar /> 
+  <Navbar />
+  <div className='middle'></div>
+  <div className='bottom'></div>
   </>
   );
 }
