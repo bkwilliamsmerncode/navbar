@@ -68,6 +68,7 @@ const Navbar = () => {
       {isOpen && (
         <div className="nav-modal">
           <div className="modal-content">
+            <button className="close-modal" onClick={toggleMenu}>✖</button>
             <ul className="modal-links">
               {[
                 { page: 'Home', route: '/' },
