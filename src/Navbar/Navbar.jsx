@@ -1,36 +1,95 @@
-import React, { useState } from "react";
-import "./Navbar.css";
-import { SiTheboringcompany } from "react-icons/si";
-import { IoMdMenu } from "react-icons/io";
-import Modal from "../Components/Modals/Modal"
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [activePage, setActivePage] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
 
-  const [modal, setModal] = useState(false);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
-  const handleModal = () => {
-    setModal(prev => !prev)
-}
+  const handlePageClick = (page, route) => {
+    setActivePage(page);
+    setIsOpen(false); // Close the modal
+    navigate(route); // Navigate to the route
+  };
+
+  // Handle scroll effect for sticky navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <>
-    {modal ? <Modal /> : null}
-      <nav id="main">
-        <div className="navLeft">
-          <div className="logo">
-            <SiTheboringcompany />
-          </div>
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="logo">
+          <h1>MyCompany</h1>
         </div>
-        <div className="navRight">
-            <div className="pages"><p>Homepage</p></div>
-            <div className="pages"><p>About</p></div>
-            <div className="pages"><p>Contact</p></div>
-            <div className="pages"><p>Info</p></div>
-            <div className="pages"><p>Profile</p></div>
-            <div className="pages"><p>Logout</p></div>
-            <div className="menu" onClick={() => handleModal()}><IoMdMenu /></div>
+        <ul className="nav-links">
+          {[
+            { page: 'Home', route: '/' },
+            { page: 'About', route: '/about' },
+            { page: 'Services', route: '/services' },
+            { page: 'Portfolio', route: '/portfolio' },
+            { page: 'Blog', route: '/blog' },
+            { page: 'Contact', route: '/contact' }
+          ].map((item, index) => (
+            <li
+              key={index}
+              className={`nav-item ${activePage === item.page ? 'active' : ''}`}
+              onClick={() => handlePageClick(item.page, item.route)}
+            >
+              {item.page}
+            </li>
+          ))}
+        </ul>
+        <button className="cta-button">Sign Up</button>
+        <div className="hamburger" onClick={toggleMenu}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
         </div>
       </nav>
+
+      {isOpen && (
+        <div className="nav-modal">
+          <div className="modal-content">
+            <ul className="modal-links">
+              {[
+                { page: 'Home', route: '/' },
+                { page: 'About', route: '/about' },
+                { page: 'Services', route: '/services' },
+                { page: 'Portfolio', route: '/portfolio' },
+                { page: 'Blog', route: '/blog' },
+                { page: 'Contact', route: '/contact' }
+              ].map((item, index) => (
+                <li
+                  key={index}
+                  className={`modal-item ${activePage === item.page ? 'active' : ''}`}
+                  onClick={() => handlePageClick(item.page, item.route)}
+                >
+                  {item.page}
+                </li>
+              ))}
+            </ul>
+            <button className="cta-button modal-button">Sign Up</button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

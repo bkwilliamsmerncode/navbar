@@ -1,69 +1,129 @@
-#main {
+.navbar {
   display: flex;
-  width: 100%;
-  height: 100px;
-  border: solid 1px red;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2) ;
-}
-
-.navLeft {
-  display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  border: solid blue 1px;
-  width: 25%;
-  height: 100%;
+  padding: 1rem 2rem;
+  background-color: white;
+  color: black;
+  position: fixed; /* Make the navbar sticky */
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  transition: background-color 0.3s ease;
 }
 
-.logo {
-  font-size: 100px;
+.navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.95); /* Slight transparency */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow when scrolled */
 }
 
-.navRight {
+.logo h1 {
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-item {
+  margin: 0 1rem;
+  cursor: pointer;
+  position: relative;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: #09bab5;
+  text-decoration: underline;
+}
+
+.cta-button {
+  background-color: #09bab5;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #007f7a;
+}
+
+/* Hamburger Menu Styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 4px 0;
+}
+
+/* Modal Styles */
+.nav-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #333;
+  color: white;
+  transform: translateX(-100%);
+  animation: slideIn 0.3s forwards;
+  z-index: 100;
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+  }
+}
+
+.modal-content {
+  padding: 2rem;
+}
+
+.modal-links {
+  list-style: none;
+}
+
+.modal-item {
+  margin: 1rem 0;
+  cursor: pointer;
+}
+
+.modal-item:hover,
+.modal-item.active {
+  color: #09bab5;
+  text-decoration: underline;
+}
+
+.modal-button {
+  margin-top: 2rem;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  border: solid green 1px;
-  width: 75%;
-  height: 100%;
-}
-
-.pages {
-font-size: x-large;
-cursor: pointer;
-}
-
-.pages:active {
-    color: orange;
-}
-
-.menu {
-  font-size: 40px;
-}
-
-
-
-@media (max-width: 900px){
-  
-  .pages {
-    display: none;
   }
 
-  .navRight {
-    justify-content: end;
+  .nav-modal {
+    width: 100%; /* Full width modal on smaller screens */
   }
-
-  .menu {
-    margin-right: 10px;
-  }
-
-
-}
-
-@media (min-width: 900px) {
-
-  .menu {
-    display: none;
-  }
-  
 }
